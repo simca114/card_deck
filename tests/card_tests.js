@@ -37,4 +37,14 @@ QUnit.test( "New card with given suit and value (invalid suit)", function (asser
         var value = val.toString();
         assert.throws( "throws" , new Card(suit, val) );
     }
+    for (val = 1; val <= 13; val++) {
+        var suit = "kites";
+        var value = val.toString();
+        assert.throws( "throws" , new Card(suit, val) );
+    }
+    for (val = 1; val <= 13; val++) {
+        var suit = "pinapples";
+        var value = val.toString();
+        assert.throws( "throws" , new Card(suit, val) );
+    }
 });

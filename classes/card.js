@@ -4,8 +4,11 @@ function Card(s, v) {
 
     //only set suit to a specific value if provided upon creation
     if (s) {
-        if ( s == "clubs" || s == "diamonds" || s == ""
-        suit = s;
+        if ( s == "clubs" || s == "diamonds" || s == "hearts" || s == "spades" ) {
+            suit = s;
+        } else {
+
+        }
     }
 
     if (v) {
