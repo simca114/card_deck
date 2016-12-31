@@ -1,3 +1,8 @@
+function CardException(message) {
+    this.name = "CardException";
+    this.message = message;
+}
+
 function Card(s, v) {
     var suit = "";
     var value = 0;
@@ -7,7 +12,7 @@ function Card(s, v) {
         if ( s == "clubs" || s == "diamonds" || s == "hearts" || s == "spades" ) {
             suit = s;
         } else {
-
+            throw "Invalid suit passed"
         }
     }
 
