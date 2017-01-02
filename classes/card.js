@@ -12,7 +12,7 @@ function Card(s, v) {
         if ( s == "clubs" || s == "diamonds" || s == "hearts" || s == "spades" ) {
             suit = s;
         } else {
-            throw "Invalid suit passed"
+            throw new CardException("Invalid suit passed");
         }
     }
 

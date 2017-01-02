@@ -35,27 +35,49 @@ QUnit.test( "New card with given suit and value (invalid suit)", function (asser
     for (val = 1; val <= 13; val++) {
         var suit = "clovers";
         var value = val.toString();
-        assert.throws(
+        assert.ok(
             function () {
                 try {
                     new Card(suit, val)
                 } catch (e) {
-                    throw e.message;
+                    return true;
+                } finally {
+                    return false;
                 }
             },
-            "throws" );
-        //assert.throws( function () { throw "HAHAHA!" }, "throws" );
+            suit.concat(" is not a valid suit (value ", value, "), card creation failed")
+        );
     }
-    /*
     for (val = 1; val <= 13; val++) {
         var suit = "kites";
         var value = val.toString();
-        assert.throws( "throws" , new Card(suit, val) );
+        assert.ok(
+            function () {
+                try {
+                    new Card(suit, val)
+                } catch (e) {
+                    return true;
+                } finally {
+                    return false;
+                }
+            },
+            suit.concat(" is not a valid suit (value ", value, "), card creation failed")
+        );
     }
     for (val = 1; val <= 13; val++) {
-        var suit = "pinapples";
+        var suit = "pinenuts";
         var value = val.toString();
-        assert.throws( "throws" , new Card(suit, val) );
+        assert.ok(
+            function () {
+                try {
+                    new Card(suit, val)
+                } catch (e) {
+                    return true;
+                } finally {
+                    return false;
+                }
+            },
+            suit.concat(" is not a valid suit (value ", value, "), card creation failed")
+        );
     }
-    */
 });
