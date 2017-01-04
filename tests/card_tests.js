@@ -1,5 +1,8 @@
 var configs = new CardDefinition();
 
+/* TODO: explain what is being tested here and why
+ *
+ */
 QUnit.test( "New card with given suit and value (All valid cards)", function (assert) {
     for (val = 1; val <= 13; val++) {
         var suit = "clubs";
@@ -31,53 +34,73 @@ QUnit.test( "New card with given suit and value (All valid cards)", function (as
     }
 });
 
-QUnit.test( "New card with given suit and value (invalid suit)", function (assert) {
+
+
+/* TODO: explain what is being tested here and why
+ *
+ */
+QUnit.test( "New card with given suit and value (valid value, invalid suit)", function (assert) {
     for (val = 1; val <= 13; val++) {
         var suit = "clovers";
         var value = val.toString();
-        assert.ok(
+        assert.throws(
             function () {
-                try {
-                    new Card(suit, val)
-                } catch (e) {
-                    return true;
-                } finally {
-                    return false;
-                }
+                new Card(suit, val)
             },
-            suit.concat(" is not a valid suit (value ", value, "), card creation failed")
+            CardException,
+            suit.concat(" is not a valid suit (value ", value, "), CardException thrown")
         );
     }
     for (val = 1; val <= 13; val++) {
         var suit = "kites";
         var value = val.toString();
-        assert.ok(
+        assert.throws(
             function () {
-                try {
-                    new Card(suit, val)
-                } catch (e) {
-                    return true;
-                } finally {
-                    return false;
-                }
+                new Card(suit, val)
             },
-            suit.concat(" is not a valid suit (value ", value, "), card creation failed")
+            CardException,
+            suit.concat(" is not a valid suit (value ", value, "), CardException thrown")
         );
     }
     for (val = 1; val <= 13; val++) {
         var suit = "pinenuts";
         var value = val.toString();
+        assert.throws(
+            function () {
+                new Card(suit, val)
+            },
+            CardException,
+            suit.concat(" is not a valid suit (value ", value, "), CardException thrown")
+        );
+    }
+});
+
+/* TODO: explain what is being tested here and why
+ *
+ */
+QUnit.test( "New card with given suit and value (invalid value, valid suit)", function (assert) {
+    configs.getSuits().forEach(function (suit) {
+        console.log(suit);
+        var val = 0;
+        var value = val.toString();
+
         assert.ok(
+            /*
             function () {
                 try {
-                    new Card(suit, val)
+                    console.log("running test");
+                    new Card(suit, 1);
                 } catch (e) {
+                    console.log("Exception");
                     return true;
                 } finally {
+                    console.log("NO Exception");
                     return false;
                 }
             },
-            suit.concat(" is not a valid suit (value ", value, "), card creation failed")
+            */
+            false,
+            value.concat(" is not a valid value (suit ", suit, "), card creation failed")
         );
-    }
+    });
 });
