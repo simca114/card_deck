@@ -3,7 +3,7 @@ var configs = new CardDefinition();
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "New card with given suit and value (All valid cards)", function (assert) {
+QUnit.test( "Create a new card with given suit and value (All valid cards)", function (assert) {
     for (val = 1; val <= 13; val++) {
         var suit = "clubs";
         var value = val.toString();
@@ -55,7 +55,7 @@ QUnit.test( "New card with given suit and value (All valid cards)", function (as
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "New card with given suit and value (valid value, invalid suit)", function (assert) {
+QUnit.test( "Create a new card with given suit and value (valid value, invalid suit)", function (assert) {
     for (val = 1; val <= 13; val++) {
         var suit = "clovers";
         var value = val.toString();
@@ -94,7 +94,7 @@ QUnit.test( "New card with given suit and value (valid value, invalid suit)", fu
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "New card with given suit and value (invalid value, valid suit)", function (assert) {
+QUnit.test( "Create a new card with given suit and value (invalid value, valid suit)", function (assert) {
     configs.getSuits().forEach(function (suit) {
         var val = 0;
         var value = val.toString();
@@ -148,7 +148,7 @@ QUnit.test( "New card with given suit and value (invalid value, valid suit)", fu
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "New card with given suit and value (invalid types)", function (assert) {
+QUnit.test( "Create a new card with given suit and value (invalid types)", function (assert) {
     var validSuit = "hearts";
     var validValue = 1;
     var invalidSuitTypes = [null, true, 1, function () {}];
@@ -172,4 +172,35 @@ QUnit.test( "New card with given suit and value (invalid types)", function (asse
             "invalid value type passed (" + typeof badValueType + ", should be number), CardException thrown"
         );
     });
+});
+
+
+/* TODO: explain what is being tested here and why
+ *
+ */
+QUnit.test( "Create a new card with missing arguements", function (assert) {
+    var validSuit = "hearts";
+    var validValue = 1;
+
+    assert.throws(
+        function () {
+            new Card(validSuit);
+        },
+        CardException,
+        "missing one or more arguements for creating a card, CardException thrown"
+    );
+    assert.throws(
+        function () {
+            new Card(validValue);
+        },
+        CardException,
+        "missing one or more arguements for creating a card, CardException thrown"
+    );
+    assert.throws(
+        function () {
+            new Card();
+        },
+        CardException,
+        "missing one or more arguements for creating a card, CardException thrown"
+    );
 });
