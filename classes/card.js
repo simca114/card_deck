@@ -7,8 +7,9 @@ function Card(s, v) {
     var suit = "";
     var value = 0;
 
-    //only set suit to a specific value if provided upon creation
-    if (s) {
+    //only set suit to a specific value if provided
+    if (typeof s === 'string') {
+        //only set the suit if a valid suit is provided
         if ( s == "clubs" || s == "diamonds" || s == "hearts" || s == "spades" ) {
             suit = s;
         } else {
@@ -16,8 +17,14 @@ function Card(s, v) {
         }
     }
 
-    if (v) {
-        value = v;
+    //only set the value if a number is provided
+    if (typeof v === 'number') {
+        //only set the value if a valid value is provided
+        if (v >= 1 && v <= 13) {
+            value = v;
+        } else {
+            throw new CardException("Invalid value passed");
+        }
     }
 
     this.getSuit = function () {
