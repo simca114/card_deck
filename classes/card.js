@@ -15,6 +15,8 @@ function Card(s, v) {
         } else {
             throw new CardException("Invalid suit passed");
         }
+    } else {
+        throw new CardException("Invalid suit data type passed (should be string)");
     }
 
     //only set the value if a number is provided
@@ -25,6 +27,8 @@ function Card(s, v) {
         } else {
             throw new CardException("Invalid value passed");
         }
+    } else {
+        throw new CardException("Invalid value data type passed (should be number)");
     }
 
     this.getSuit = function () {
