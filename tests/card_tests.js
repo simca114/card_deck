@@ -8,8 +8,14 @@ QUnit.test( "New card with given suit and value (All valid cards)", function (as
         var suit = "clubs";
         var value = val.toString();
         var newCard = new Card(suit, val);
-        assert.ok( $.inArray(newCard.getSuit(), configs.getSuits()) != -1, suit.concat(" is a valid suit!") );
-        assert.ok( $.inArray(newCard.getValue(), configs.getValues()) != -1, value.concat(" is a valid value!") );
+        assert.ok(
+            $.inArray(newCard.getSuit(), configs.getSuits()) != -1,
+            suit + " is a valid suit!"
+        );
+        assert.ok(
+            $.inArray(newCard.getValue(), configs.getValues()) != -1,
+            value + " is a valid value!"
+        );
     }
     for (val = 1; val <= 13; val++) {
         var suit = "diamonds";
@@ -125,6 +131,35 @@ QUnit.test( "New card with given suit and value (invalid value, valid suit)", fu
             },
             CardException,
             value.concat(" is not a valid value (suit ", suit, "), CardException thrown")
+        );
+    });
+});
+
+/* TODO: explain what is being tested here and why
+ *
+ */
+QUnit.test( "New card with given suit and value (invalid types)", function (assert) {
+    var validSuit = "hearts";
+    var validValue = 1;
+    var invalidSuitTypes = [null, true, 1, function () {}];
+    var invalidValueTypes = [null, true, "string", function () {}];
+
+    invalidSuitTypes.forEach(function (badSuitType) {
+        assert.throws(
+            function () {
+                new Card(badSuitType, validValue);
+            },
+            CardException,
+            "invalid suit type passed (" + typeof badSuitType + ", should be string), CardException thrown"
+        );
+    });
+    invalidValueTypes.forEach(function (badValueType) {
+        assert.throws(
+            function () {
+                new Card(validSuit, badValueType);
+            },
+            CardException,
+            "invalid value type passed (" + typeof badValueType + ", should be number), CardException thrown"
         );
     });
 });
