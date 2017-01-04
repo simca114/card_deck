@@ -67,7 +67,7 @@ QUnit.test( "New card with given suit and value (valid value, invalid suit)", fu
         var value = val.toString();
         assert.throws(
             function () {
-                new Card(suit, val)
+                new Card(suit, val);
             },
             CardException,
             suit.concat(" is not a valid suit (value ", value, "), CardException thrown")
@@ -80,27 +80,51 @@ QUnit.test( "New card with given suit and value (valid value, invalid suit)", fu
  */
 QUnit.test( "New card with given suit and value (invalid value, valid suit)", function (assert) {
     configs.getSuits().forEach(function (suit) {
-        console.log(suit);
         var val = 0;
         var value = val.toString();
 
-        assert.ok(
-            /*
+        assert.throws(
             function () {
-                try {
-                    console.log("running test");
-                    new Card(suit, 1);
-                } catch (e) {
-                    console.log("Exception");
-                    return true;
-                } finally {
-                    console.log("NO Exception");
-                    return false;
-                }
+                new Card(suit, val);
             },
-            */
-            false,
-            value.concat(" is not a valid value (suit ", suit, "), card creation failed")
+            CardException,
+            value.concat(" is not a valid value (suit ", suit, "), CardException thrown")
+        );
+    });
+    configs.getSuits().forEach(function (suit) {
+        var val = 14;
+        var value = val.toString();
+
+        assert.throws(
+            function () {
+                new Card(suit, val);
+            },
+            CardException,
+            value.concat(" is not a valid value (suit ", suit, "), CardException thrown")
+        );
+    });
+    configs.getSuits().forEach(function (suit) {
+        var val = -1;
+        var value = val.toString();
+
+        assert.throws(
+            function () {
+                new Card(suit, val);
+            },
+            CardException,
+            value.concat(" is not a valid value (suit ", suit, "), CardException thrown")
+        );
+    });
+    configs.getSuits().forEach(function (suit) {
+        var val = 100;
+        var value = val.toString();
+
+        assert.throws(
+            function () {
+                new Card(suit, val);
+            },
+            CardException,
+            value.concat(" is not a valid value (suit ", suit, "), CardException thrown")
         );
     });
 });
