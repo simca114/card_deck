@@ -211,3 +211,51 @@ QUnit.test( "Create a new card with missing/extra arguments", function (assert) 
         "one or more extra arguments for creating a card, CardInvalidArgAmountException thrown"
     );
 });
+
+/* TODO: explain what is being tested here and why
+ *
+ */
+QUnit.test( "Card.toString(), make sure expected name is returned for each valid card", function (assert) {
+    configs.getSuits().forEach(function (suit) {
+        for (val = 2; val < 11; val++) {
+            var value = val.toString()
+            var card = new Card(suit, val);
+            assert.ok(
+                card.toString() === value + " of " + suit,
+                "Correct string for Card(" + suit + ", " + value + ")"
+            );
+        }
+
+        var val = 1;
+        var value = val.toString();
+        var card = new Card(suit, val);
+        assert.ok(
+            card.toString() === "ace of " + suit,
+            "Correct string for Card(" + suit + ", " + value + ")"
+        );
+
+        var val = 11;
+        var value = val.toString();
+        var card = new Card(suit, val);
+        assert.ok(
+            card.toString() === "jack of " + suit,
+            "Correct string for Card(" + suit + ", " + value + ")"
+        );
+
+        var val = 12;
+        var value = val.toString();
+        var card = new Card(suit, val);
+        assert.ok(
+            card.toString() === "queen of " + suit,
+            "Correct string for Card(" + suit + ", " + value + ")"
+        );
+
+        var val = 13;
+        var value = val.toString();
+        var card = new Card(suit, val);
+        assert.ok(
+            card.toString() === "king of " + suit,
+            "Correct string for Card(" + suit + ", " + value + ")"
+        );
+    });
+});

@@ -50,10 +50,12 @@ function Card(s, v) {
         throw new CardInvalidArgException("Invalid value data type passed (should be number)");
     }
 
+    // getter function for the card's suit
     this.getSuit = function () {
         return suit;
     }
 
+    // getter function for the card's value
     this.getValue = function () {
         return value;
     }
