@@ -1,6 +1,19 @@
-function CardException(message) {
-    this.name = "CardException";
-    this.message = message;
+function CardInvalidArgException(message) {
+    this.name = "CardInvalidArgException";
+    this.message = "An invalid arguement was passed to the constructor"
+
+    if (message) {
+        this.message = message;
+    }
+}
+
+function CardMissingArgException(message) {
+    this.name = "CardMissingArgException";
+    this.message = "One or more arguements are missing during the card creation";
+
+    if (message) {
+        this.message = message;
+    }
 }
 
 function Card(s, v) {
@@ -13,10 +26,10 @@ function Card(s, v) {
         if ( s == "clubs" || s == "diamonds" || s == "hearts" || s == "spades" ) {
             suit = s;
         } else {
-            throw new CardException("Invalid suit passed");
+            throw new CardInvalidArgException("Invalid suit passed");
         }
     } else {
-        throw new CardException("Invalid suit data type passed (should be string)");
+        throw new CardInvalidArgException("Invalid suit data type passed (should be string)");
     }
 
     //only set the value if a number is provided
@@ -25,10 +38,10 @@ function Card(s, v) {
         if (v >= 1 && v <= 13) {
             value = v;
         } else {
-            throw new CardException("Invalid value passed");
+            throw new CardInvalidArgException("Invalid value passed");
         }
     } else {
-        throw new CardException("Invalid value data type passed (should be number)");
+        throw new CardInvalidArgException("Invalid value data type passed (should be number)");
     }
 
     this.getSuit = function () {

@@ -63,8 +63,8 @@ QUnit.test( "Create a new card with given suit and value (valid value, invalid s
             function () {
                 new Card(suit, val)
             },
-            CardException,
-            suit + " is not a valid suit (value " + value + "), CardException thrown"
+            CardInvalidArgException,
+            suit + " is not a valid suit (value " + value + "), CardInvalidArgException thrown"
         );
     }
     for (val = 1; val <= 13; val++) {
@@ -74,8 +74,8 @@ QUnit.test( "Create a new card with given suit and value (valid value, invalid s
             function () {
                 new Card(suit, val)
             },
-            CardException,
-            suit + " is not a valid suit (value " + value + "), CardException thrown"
+            CardInvalidArgException,
+            suit + " is not a valid suit (value " + value + "), CardInvalidArgException thrown"
         );
     }
     for (val = 1; val <= 13; val++) {
@@ -85,8 +85,8 @@ QUnit.test( "Create a new card with given suit and value (valid value, invalid s
             function () {
                 new Card(suit, val);
             },
-            CardException,
-            suit + " is not a valid suit (value " + value + "), CardException thrown"
+            CardInvalidArgException,
+            suit + " is not a valid suit (value " + value + "), CardInvalidArgException thrown"
         );
     }
 });
@@ -103,8 +103,8 @@ QUnit.test( "Create a new card with given suit and value (invalid value, valid s
             function () {
                 new Card(suit, val);
             },
-            CardException,
-            value + " is not a valid value (suit " + suit + "), CardException thrown"
+            CardInvalidArgException,
+            value + " is not a valid value (suit " + suit + "), CardInvalidArgException thrown"
         );
     });
     configs.getSuits().forEach(function (suit) {
@@ -115,8 +115,8 @@ QUnit.test( "Create a new card with given suit and value (invalid value, valid s
             function () {
                 new Card(suit, val);
             },
-            CardException,
-            value + " is not a valid value (suit " + suit + "), CardException thrown"
+            CardInvalidArgException,
+            value + " is not a valid value (suit " + suit + "), CardInvalidArgException thrown"
         );
     });
     configs.getSuits().forEach(function (suit) {
@@ -127,8 +127,8 @@ QUnit.test( "Create a new card with given suit and value (invalid value, valid s
             function () {
                 new Card(suit, val);
             },
-            CardException,
-            value + " is not a valid value (suit " + suit + "), CardException thrown"
+            CardInvalidArgException,
+            value + " is not a valid value (suit " + suit + "), CardInvalidArgException thrown"
         );
     });
     configs.getSuits().forEach(function (suit) {
@@ -139,8 +139,8 @@ QUnit.test( "Create a new card with given suit and value (invalid value, valid s
             function () {
                 new Card(suit, val);
             },
-            CardException,
-            value + " is not a valid value (suit " + suit + "), CardException thrown"
+            CardInvalidArgException,
+            value + " is not a valid value (suit " + suit + "), CardInvalidArgException thrown"
         );
     });
 });
@@ -159,8 +159,8 @@ QUnit.test( "Create a new card with given suit and value (invalid types)", funct
             function () {
                 new Card(badSuitType, validValue);
             },
-            CardException,
-            "invalid suit type passed (" + typeof badSuitType + ", should be string), CardException thrown"
+            CardInvalidArgException,
+            "invalid suit type passed (" + typeof badSuitType + ", should be string), CardInvalidArgException thrown"
         );
     });
     invalidValueTypes.forEach(function (badValueType) {
@@ -168,8 +168,8 @@ QUnit.test( "Create a new card with given suit and value (invalid types)", funct
             function () {
                 new Card(validSuit, badValueType);
             },
-            CardException,
-            "invalid value type passed (" + typeof badValueType + ", should be number), CardException thrown"
+            CardInvalidArgException,
+            "invalid value type passed (" + typeof badValueType + ", should be number), CardInvalidArgException thrown"
         );
     });
 });
@@ -186,21 +186,21 @@ QUnit.test( "Create a new card with missing arguements", function (assert) {
         function () {
             new Card(validSuit);
         },
-        CardException,
-        "missing one or more arguements for creating a card, CardException thrown"
+        CardMissingArgException,
+        "missing one or more arguements for creating a card, CardMissingArgsException thrown"
     );
     assert.throws(
         function () {
             new Card(validValue);
         },
-        CardException,
-        "missing one or more arguements for creating a card, CardException thrown"
+        CardMissingArgException,
+        "missing one or more arguements for creating a card, CardMissingArgsException thrown"
     );
     assert.throws(
         function () {
             new Card();
         },
-        CardException,
-        "missing one or more arguements for creating a card, CardException thrown"
+        CardMissingArgException,
+        "missing one or more arguements for creating a card, CardMissingArgsException thrown"
     );
 });
