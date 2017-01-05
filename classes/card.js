@@ -1,15 +1,15 @@
 function CardInvalidArgException(message) {
     this.name = "CardInvalidArgException";
-    this.message = "An invalid arguement was passed to the constructor"
+    this.message = "An invalid argument was passed to the constructor"
 
     if (message) {
         this.message = message;
     }
 }
 
-function CardMissingArgException(message) {
-    this.name = "CardMissingArgException";
-    this.message = "One or more arguements are missing during the card creation";
+function CardInvalidArgAmountException(message) {
+    this.name = "CardInvalidArgAmountException";
+    this.message = "Invalid number of arguments are passed to the constructor";
 
     if (message) {
         this.message = message;
@@ -19,6 +19,12 @@ function CardMissingArgException(message) {
 function Card(s, v) {
     var suit = "";
     var value = 0;
+
+    if (arguments.length < 2) {
+        throw new CardInvalidArgAmountException("One or more arguments are missing for the Card constructor");
+    } else if (arguments.length > 2) {
+        throw new CardInvalidArgAmountException("One or more extra arguments are passed to the Card constructor")
+    }
 
     //only set suit to a specific value if provided
     if (typeof s === 'string') {

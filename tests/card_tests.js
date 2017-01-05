@@ -178,7 +178,7 @@ QUnit.test( "Create a new card with given suit and value (invalid types)", funct
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "Create a new card with missing arguements", function (assert) {
+QUnit.test( "Create a new card with missing/extra arguments", function (assert) {
     var validSuit = "hearts";
     var validValue = 1;
 
@@ -186,21 +186,28 @@ QUnit.test( "Create a new card with missing arguements", function (assert) {
         function () {
             new Card(validSuit);
         },
-        CardMissingArgException,
-        "missing one or more arguements for creating a card, CardMissingArgsException thrown"
+        CardInvalidArgAmountException,
+        "missing one or more arguments for creating a card, CardInvalidArgAmountException thrown"
     );
     assert.throws(
         function () {
             new Card(validValue);
         },
-        CardMissingArgException,
-        "missing one or more arguements for creating a card, CardMissingArgsException thrown"
+        CardInvalidArgAmountException,
+        "missing one or more arguments for creating a card, CardInvalidArgAmountException thrown"
     );
     assert.throws(
         function () {
             new Card();
         },
-        CardMissingArgException,
-        "missing one or more arguements for creating a card, CardMissingArgsException thrown"
+        CardInvalidArgAmountException,
+        "missing one or more arguments for creating a card, CardInvalidArgAmountException thrown"
+    );
+    assert.throws(
+        function () {
+            new Card(validSuit, validValue, "EXTRA");
+        },
+        CardInvalidArgAmountException,
+        "one or more extra arguments for creating a card, CardInvalidArgAmountException thrown"
     );
 });
