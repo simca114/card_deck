@@ -59,4 +59,29 @@ function Card(s, v) {
     this.getValue = function () {
         return value;
     }
+
+    this.toString = function () {
+        var valueString = "";
+
+        if (value >= 2 && value <= 10) {
+            valueString = value.toString();
+        } else {
+            switch (value) {
+                case 1:
+                    valueString = "ace";
+                    break;
+                case 11:
+                    valueString = "jack";
+                    break;
+                case 12:
+                    valueString = "queen";
+                    break;
+                case 13:
+                    valueString = "king";
+                    break;
+            }
+        }
+
+        return valueString + " of " + suit;
+    }
 }
