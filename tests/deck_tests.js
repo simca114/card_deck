@@ -24,3 +24,15 @@ QUnit.test( "Test if new Deck has all 52 cards (true if all tests pass)", functi
         );
     }
 });
+
+/* TODO: explain what is being tested here and why
+ *
+ */
+QUnit.test( "Test if new Deck has exactly 52 cards", function (assert) {
+    var deck = new Deck();
+
+    assert.ok(
+        deck.getCards().length == 52,
+        "A newly created deck has 52 cards"
+    );
+});
