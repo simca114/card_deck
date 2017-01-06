@@ -3,7 +3,7 @@ var configs = new CardDefinition();
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "Create a new card with given suit and value (All valid cards)", function (assert) {
+QUnit.test( "Create a new card with given suit and value (All valid cards), testing if card is created", function (assert) {
     for (val = 1; val <= 13; val++) {
         var suit = "clubs";
         var value = val.toString();
@@ -55,7 +55,7 @@ QUnit.test( "Create a new card with given suit and value (All valid cards)", fun
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "Create a new card with given suit and value (valid value, invalid suit)", function (assert) {
+QUnit.test( "Create a new card with given suit and value (valid value, invalid suit), testing if exception is thrown", function (assert) {
     for (val = 1; val <= 13; val++) {
         var suit = "clovers";
         var value = val.toString();
@@ -94,7 +94,7 @@ QUnit.test( "Create a new card with given suit and value (valid value, invalid s
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "Create a new card with given suit and value (invalid value, valid suit)", function (assert) {
+QUnit.test( "Create a new card with given suit and value (invalid value, valid suit), testing if exception is thrown", function (assert) {
     configs.getSuits().forEach(function (suit) {
         var val = 0;
         var value = val.toString();
@@ -148,7 +148,7 @@ QUnit.test( "Create a new card with given suit and value (invalid value, valid s
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "Create a new card with given suit and value (invalid types)", function (assert) {
+QUnit.test( "Create a new card with given suit and value (invalid types), testing if exception is thrown", function (assert) {
     var validSuit = "hearts";
     var validValue = 1;
     var invalidSuitTypes = [null, true, 1, function () {}];
@@ -178,7 +178,7 @@ QUnit.test( "Create a new card with given suit and value (invalid types)", funct
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "Create a new card with missing/extra arguments", function (assert) {
+QUnit.test( "Create a new card with missing/extra arguments, testing if exception is thrown", function (assert) {
     var validSuit = "hearts";
     var validValue = 1;
 
@@ -215,7 +215,7 @@ QUnit.test( "Create a new card with missing/extra arguments", function (assert) 
 /* TODO: explain what is being tested here and why
  *
  */
-QUnit.test( "Card.toString(), make sure expected name is returned for each valid card", function (assert) {
+QUnit.test( "Card.toString(), testing that expected name is returned for each valid card", function (assert) {
     configs.getSuits().forEach(function (suit) {
         for (val = 2; val < 11; val++) {
             var value = val.toString()
@@ -257,5 +257,25 @@ QUnit.test( "Card.toString(), make sure expected name is returned for each valid
             card.toString() === "king of " + suit,
             "Correct string for Card(" + suit + ", " + value + ")"
         );
+    });
+});
+
+/* TODO: explain what is being tested here and why
+ *
+ */
+QUnit.test( "Card.relativeValue(), testing all cards for accurate relative value", function (assert) {
+    var counter = 1;
+    configs.getSuits().forEach(function (suit) {
+        for (val = 1; val <= 13; val++) {
+            var card = new Card(suit, val);
+            var value = val.toString();
+
+            var result = card.relativeValue();
+            assert.ok(
+                result == counter,
+                counter.toString() + " is the expected relative value for (" + suit + ", " + value + "), " + result.toString() + " returned"
+            );
+            counter++;
+        }
     });
 });
