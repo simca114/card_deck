@@ -84,4 +84,26 @@ function Card(s, v) {
 
         return valueString + " of " + suit;
     }
+
+    // returns the value of the card in relation to all other cards
+    this.relativeValue = function () {
+        var offset = 0;
+
+        // apply an offset to the cards value based on its suit
+        switch (suit) {
+            case "clubs":
+                offset = 0;
+                break;
+            case "diamonds":
+                offset = 13;
+                break;
+            case "hearts":
+                offset = 26;
+                break;
+            case "spades":
+                offset = 39;
+        }
+
+        return value + offset;
+    }
 }
