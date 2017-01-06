@@ -46,10 +46,19 @@ QUnit.test( "Test if Deck.shuffle() changes the order of the cards without destr
 
         for (timesShuffled = 1; timesShuffled <= 10; timesShuffled++) {
             var messagePrefix = "Deck " + deckNum.toString() + " shuffled " + timesShuffled.toString() + " time(s),";
-            var oldCardOrder = deck.getCards();
+
+            // run the shuffle method, capturing the order of the cards before and after the shuffle
+            var oldCardOrder = [];
+            deck.getCards().forEach(function (card) {
+                oldCardOrder.push(card.relativeValue());
+            });
 
             deck.shuffle();
-            var newCardOrder = deck.getCards();
+            var newCardOrder = [];
+            deck.getCards().forEach(function (card) {
+                newCardOrder.push(card.relativeValue());
+            });
+
             // deck still has 52 cards post shuffle
             assert.ok(
                 newCardOrder.length == 52,
@@ -59,7 +68,7 @@ QUnit.test( "Test if Deck.shuffle() changes the order of the cards without destr
             // deck still has 52 unique, valid cards post shuffle
             var uniqueRelativeValues = [];
 
-            deck.newCardOrder.forEach(function (card) {
+            deck.getCards().forEach(function (card) {
                 var currentRelVal = card.relativeValue();
                 if ($.inArray(currentRelVal, uniqueRelativeValues) == -1) {
                     uniqueRelativeValues.push(currentRelVal);
@@ -74,7 +83,7 @@ QUnit.test( "Test if Deck.shuffle() changes the order of the cards without destr
             var orderIsNotEqual = false;
 
             for(index = 0; index < newCardOrder.length; index++) {
-                if ( oldCardOrder[index].relativeValue() != newCardOrder[index].relativeValue() ) {
+                if ( oldCardOrder[index] != newCardOrder[index] ) {
                     orderIsNotEqual = true;
                     break;
                 }
