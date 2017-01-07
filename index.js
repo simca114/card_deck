@@ -6,16 +6,17 @@ $(document).ready(function () {
         var deckDiv = $('#deck_display');
         deckDiv.empty();
 
-        deck.getCards().forEach(function (card) {
-            var imgSource = card.imgName();
+        if (deck) {
+            deck.getCards().forEach(function (card) {
+                var imgSource = card.imgName();
 
-            var img = $(document.createElement('img'));
-            img.attr('src', "img/cards/" + imgSource);
-            img.attr('height', 100);
-            img.attr('width', 60);
-            img.appendTo(deckDiv);
-        });
-
+                var img = $(document.createElement('img'));
+                img.attr('src', "img/cards/" + imgSource);
+                img.attr('height', 100);
+                img.attr('width', 60);
+                img.appendTo(deckDiv);
+            });
+        }
     }
 
     $('#new').click(function () {
@@ -30,6 +31,11 @@ $(document).ready(function () {
 
     $('#shuffle').click(function () {
         deck.shuffle();
+        renderDeck(deck);
+    });
+
+    $('#delete').click(function () {
+        deck = undefined;
         renderDeck(deck);
     });
 });
