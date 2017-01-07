@@ -30,18 +30,30 @@ function Deck() {
         cards.sort(function (a, b) {
             var randomNumber = Math.random();
             if (randomNumber < .33) {
-                //console.log("down");
                 return -1;
             } else if (randomNumber > .66) {
-                //console.log("up");
                 return 1;
             }
 
-            //console.log("stay");
             return 0;
         });
         cards.forEach(function (card) {
             console.log(card.relativeValue());
+        });
+    }
+
+    this.sort = function () {
+        cards.sort(function (a, b) {
+            var relValA = a.relativeValue();
+            var relValB = b.relativeValue();
+
+            if (relValA < relValB) {
+                return -1;
+            } else if (relValA > relValB) {
+                return 1;
+            }
+
+            return 0;
         });
     }
 }
