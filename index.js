@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var deck;
 
+    // refreshes the card images on the page with the current order of the deck
     var renderDeck = function (newDeck) {
         var deckDiv = $('#deck_display');
         deckDiv.empty();
@@ -21,10 +22,12 @@ $(document).ready(function () {
         deck = new Deck();
         renderDeck(deck);
     });
+
     $('#sort').click(function () {
         deck.sort();
         renderDeck(deck);
     });
+
     $('#shuffle').click(function () {
         deck.shuffle();
         renderDeck(deck);
