@@ -85,6 +85,32 @@ function Card(s, v) {
         return valueString + " of " + suit;
     }
 
+    this.imgName = function () {
+        var valueString = "";
+
+        if (value >= 2 && value <= 10) {
+            valueString = value.toString();
+        } else {
+            switch (value) {
+                case 1:
+                    valueString = "ace";
+                    break;
+                case 11:
+                    valueString = "jack";
+                    break;
+                case 12:
+                    valueString = "queen";
+                    break;
+                case 13:
+                    valueString = "king";
+                    break;
+            }
+        }
+
+        return valueString + "_of_" + suit + ".png";
+
+    }
+
     // returns the value of the card in relation to all other cards
     this.relativeValue = function () {
         var offset = 0;
