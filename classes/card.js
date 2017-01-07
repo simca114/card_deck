@@ -26,7 +26,7 @@ function Card(s, v) {
         throw new CardInvalidArgAmountException("One or more extra arguments are passed to the Card constructor")
     }
 
-    //only set suit to a specific value if provided
+    //only set suit to a specific value if a string is provided
     if (typeof s === 'string') {
         //only set the suit if a valid suit is provided
         if ( s == "clubs" || s == "diamonds" || s == "hearts" || s == "spades" ) {
@@ -60,6 +60,7 @@ function Card(s, v) {
         return value;
     }
 
+    // returns a string representation of the current card
     this.toString = function () {
         var valueString = "";
 
@@ -85,6 +86,7 @@ function Card(s, v) {
         return valueString + " of " + suit;
     }
 
+    // returns the name of the img file for the card (untested)
     this.imgName = function () {
         var valueString = "";
 
@@ -111,7 +113,7 @@ function Card(s, v) {
 
     }
 
-    // returns the value of the card in relation to all other cards
+    // returns the value of the card in relation to all other cards (used for sorting)
     this.relativeValue = function () {
         var offset = 0;
 
