@@ -1,9 +1,6 @@
 var configs = new CardDefinition();
 
-
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if a newly created deck has all unique 52 cards
 QUnit.test( "Test if new Deck has all 52 cards (true if all tests pass)", function (assert) {
     var deck = new Deck();
     var tester = {};
@@ -25,9 +22,7 @@ QUnit.test( "Test if new Deck has all 52 cards (true if all tests pass)", functi
     }
 });
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if a newly created deck has exactly 52 cards
 QUnit.test( "Test if new Deck has exactly 52 cards", function (assert) {
     var deck = new Deck();
 
@@ -37,9 +32,7 @@ QUnit.test( "Test if new Deck has exactly 52 cards", function (assert) {
     );
 });
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if a deck is still a valid deck and in a different order then before after it was shuffled
 QUnit.test( "Test if Deck.shuffle() changes the order of the cards without destroying any cards (multiple runthroughs)", function (assert) {
     for (deckNum = 1; deckNum <= 5; deckNum++) {
         var deck = new Deck();
@@ -96,9 +89,7 @@ QUnit.test( "Test if Deck.shuffle() changes the order of the cards without destr
     }
 });
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if a deck is still a valid deck and in ascending order after it is sorted
 QUnit.test( "Test if Deck.sort() orders of the cards in ascending order without destroying any cards (multiple runthroughs). NOTE: uses Deck.shuffle() to rescramble card order", function (assert) {
     for (deckNum = 1; deckNum <= 5; deckNum++) {
         var deck = new Deck();
