@@ -1,8 +1,6 @@
 var configs = new CardDefinition();
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if we are able to create a new card with every valid suit and value
 QUnit.test( "Create a new card with given suit and value (All valid cards), testing if card is created", function (assert) {
     for (val = 1; val <= 13; val++) {
         var suit = "clubs";
@@ -52,9 +50,7 @@ QUnit.test( "Create a new card with given suit and value (All valid cards), test
     }
 });
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if trying to create a new card with a invalid suit throws an exception as expected
 QUnit.test( "Create a new card with given suit and value (valid value, invalid suit), testing if exception is thrown", function (assert) {
     for (val = 1; val <= 13; val++) {
         var suit = "clovers";
@@ -91,9 +87,7 @@ QUnit.test( "Create a new card with given suit and value (valid value, invalid s
     }
 });
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if trying to create a new card with an invalid value throws an exception as expected
 QUnit.test( "Create a new card with given suit and value (invalid value, valid suit), testing if exception is thrown", function (assert) {
     configs.getSuits().forEach(function (suit) {
         var val = 0;
@@ -145,9 +139,7 @@ QUnit.test( "Create a new card with given suit and value (invalid value, valid s
     });
 });
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if trying to create a new card with both a invalid suit and an invalid value throws an exception as expected
 QUnit.test( "Create a new card with given suit and value (invalid types), testing if exception is thrown", function (assert) {
     var validSuit = "hearts";
     var validValue = 1;
@@ -174,10 +166,7 @@ QUnit.test( "Create a new card with given suit and value (invalid types), testin
     });
 });
 
-
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if trying to create a new card with the wrong number of arguements throws an exception as expected
 QUnit.test( "Create a new card with missing/extra arguments, testing if exception is thrown", function (assert) {
     var validSuit = "hearts";
     var validValue = 1;
@@ -212,9 +201,7 @@ QUnit.test( "Create a new card with missing/extra arguments, testing if exceptio
     );
 });
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if the Card.toString() works as expected for each valid card
 QUnit.test( "Card.toString(), testing that expected name is returned for each valid card", function (assert) {
     configs.getSuits().forEach(function (suit) {
         for (val = 2; val < 11; val++) {
@@ -260,9 +247,7 @@ QUnit.test( "Card.toString(), testing that expected name is returned for each va
     });
 });
 
-/* TODO: explain what is being tested here and why
- *
- */
+// Checking if Card.relativeValue() returns the excpected value for each valid card
 QUnit.test( "Card.relativeValue(), testing all cards for accurate relative value", function (assert) {
     var counter = 1;
     configs.getSuits().forEach(function (suit) {
