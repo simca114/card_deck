@@ -1,14 +1,3 @@
-/*
-function CardInvalidArgException(message) {
-    this.name = "CardInvalidArgException";
-    this.message = "An invalid argument was passed to the constructor"
-
-    if (message) {
-        this.message = message;
-    }
-}
-*/
-
 function Deck() {
     var config = new CardDefinition();
     var cards = [];
@@ -42,6 +31,7 @@ function Deck() {
         });
     }
 
+    // method to sort the cards in order
     this.sort = function () {
         cards.sort(function (a, b) {
             var relValA = a.relativeValue();
